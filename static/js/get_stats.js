@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     const progressBar = document.querySelector('.progress-slider');
     progressBar.style.width = result['stats']['progress'] + '%';
 
+    const predictedDate = document.querySelector('#prediction');
+    predictedDate.textContent = result['stats']['prediction'];
+
     const playedGames = document.querySelector('#played-games');
     playedGames.textContent = result['stats']['plays'];
 

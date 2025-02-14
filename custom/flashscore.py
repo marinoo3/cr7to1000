@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 
@@ -14,6 +15,18 @@ class FlashScore():
 
         url = f'{self.base_url}/{name}/{id}/'
         return url
+    
+
+    def __predict_date(self, goals):
+
+        days = (int(datetime.now().strftime('%Y')) - 2003) * 365
+        rest_goals = 1000 - goals
+        remaining_days = rest_goals * days / goals
+
+        today = datetime.now()
+        predicted_date = today + timedelta(days=remaining_days)
+
+        return predicted_date.strftime('%d/%m/%y')
 
 
     def __parse_stats(self, html):
@@ -42,6 +55,7 @@ class FlashScore():
 
         stats['progress'] = round(stats['goals'] / 1000 * 100)
         stats['average_goals'] = round(stats['goals'] / stats['plays'], 2)
+        stats['prediction'] = self.__predict_date(stats['goals'])
 
         return stats
     
