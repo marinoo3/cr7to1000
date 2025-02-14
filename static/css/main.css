@@ -71,6 +71,15 @@ h3 {
     border-radius: 20px;
 }
 
+/* GOALS */
+
+.goals-count {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1vh;
+}
+
 /* PROGRESS */
 
 .progress-container {
@@ -89,7 +98,7 @@ h3 {
     height: 100%;
     border-radius: 1vh;
     position: relative;
-    transition: width .5s ease;
+    transition: width 1.3s ease;
 }
 
 .progress-label {
