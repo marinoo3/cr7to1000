@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>CR7 to 1000</title>
+</head>
+<body>
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="">
+    </div>
+
+    <div class="content-wrapper">
+        <div class="goals-container">
+            <h1 id="goals">⏤</h1>
+            <div class="progress-container">
+                <div class="progress-slider">
+                    <h3 class="progress-label"></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="prediction-container block">
+            <h3>PREDICTION</h3>
+            <h2>30/08/26</h2>
+        </div>
+
+        <div class="stats">
+            <div class="average-goals block">
+                <h2 id="average-goals">⏤</h2>
+                <h3>AVG BUT</h3>
+            </div>
+            <div class="played-games block">
+                <h2 id="played-games">⏤</h2>
+                <h3>MATCHS JOUÉ</h3>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/get_stats.js') }}"></script>
+</body>
+</html>
