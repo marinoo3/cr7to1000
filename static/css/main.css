@@ -94,7 +94,7 @@ h3 {
 
 .progress-label {
     position: absolute;
-    right: 20px;
+    right: 1vh;
     top: 50%;
     transform: translateY(-50%);
 }
