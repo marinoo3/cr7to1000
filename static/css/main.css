@@ -31,7 +31,7 @@ h1, h2 {
     text-align: center;
 }
 
-h3 {
+h3, p {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-weight: 200;
@@ -125,6 +125,30 @@ h3 {
 .stats .block {
     width: 100%;
 }
+
+/* POPUP */
+
+.popup {
+    background-color: var(--bg-light);
+    border: solid var(--border) 2px;
+    display: none;
+    position: absolute;
+    border-radius: 8px;
+    padding: 1vh 2vh;
+    bottom: 20px;
+    right: 20px;
+}
+.popup.loading {
+    display: flex;
+    align-items: center;
+    gap: 1.5vh
+}
+
+.popup img {
+    width: 30px;
+    height: 30px;
+}
+
 
 /* RESPONSIVE */
 

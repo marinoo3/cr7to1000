@@ -26,6 +26,9 @@ function countUp(element, target) {
 
 document.addEventListener('DOMContentLoaded', async function() {
 
+    const popup = document.querySelector('#loading-popup');
+    popup.classList.add('loading');
+
     const response = await fetch('/get_player_data/', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
@@ -55,4 +58,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     averageGoals.textContent = result['stats']['average_goals'];
 
     countUp(goalElement, result['stats']['goals']);
+
+    popup.classList.remove('loading');
 });

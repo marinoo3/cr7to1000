@@ -8,7 +8,7 @@ class TransferMarkt():
 
     def __init__(self) -> None:
         
-        self.url = 'https://www.transfermarkt.com/cristiano-ronaldo/alletore/spieler/8198'
+        self.url = 'https://www.transfermarkt.com/cristiano-ronaldo/alletore/spieler/8198/plus/1?saison=&verein=&liga=&wettbewerb=&pos=&minute=&pos=&torart=&stand='
 
 
     def __string_to_dict(string):

@@ -38,3 +38,4 @@ def get_player_data():
 # INIT
 
 API = flashscore.FlashScore()
+run_app()
