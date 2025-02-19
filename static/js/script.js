@@ -4,6 +4,10 @@ function drawTimeChart(timeChart) {
 
   const ctx = document.getElementById('time-chart');
 
+  var gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 250);
+  gradient.addColorStop(0, 'rgba(133, 61, 67, .4)');   
+  gradient.addColorStop(1, 'rgba(133, 61, 67, 0)');
+
   new Chart(ctx, {
     type: 'line',
     data: {
@@ -12,6 +16,9 @@ function drawTimeChart(timeChart) {
         data: timeChart['data'],
         borderWidth: baseFontSize/8,
         borderColor: '#E8545F',
+        // backgroundColor: '#53D43',
+        fill: true,
+        backgroundColor: gradient,
         tension: 0.4
       }]
     },
@@ -76,7 +83,7 @@ function drawGoalsTypeChart(goalsTypeChart) {
       plugins: {
         title: {
           display: true,
-          text: 'TYPE DE BUT FAVORIE',
+          text: 'TYPE DE BUT',
           font: {
             size: baseFontSize,
             family: 'Montserrat'
@@ -114,16 +121,32 @@ function drawGoalsTypeChart(goalsTypeChart) {
 function updatePositionChart(positionChart) {
 
   const custom_ctx = document.getElementById('position-custom-chart');
-  console.log(custom_ctx)
 
   for(position in positionChart) {
-    const percent = positionChart[position];
+
+    const percent = positionChart[position]['percent'];
     const position_element = custom_ctx.querySelector('#' + position);
     const size = (.5+ percent) * 6 + 'vh';
+
     position_element.style.height = size;
     position_element.style.width = size;
+
+    position_element.dataset.count = positionChart[position]['count']
   }
 
+  custom_ctx.querySelectorAll('.position-points > li').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      // Store the original text in a data attribute so it can be restored on mouseleave
+      item.dataset.originalText = item.textContent;
+      // Set textContent to the value of data-count attribute
+      item.textContent = item.dataset.count;
+    });
+  
+    item.addEventListener('mouseleave', function() {
+      // Restore the original text
+      item.textContent = item.dataset.originalText;
+    });
+  });
 
 }
 
@@ -171,8 +194,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   const stats = await response.json();
   const goalElement = document.querySelector('#goals');
   goalElement.textContent = 0;
-
-  console.log(stats);
 
   const percentElement = document.querySelector('.progress-label');
   percentElement.textContent = stats['player']['progress'] + '%';

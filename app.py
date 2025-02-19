@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify
 from datetime import datetime
-import os
 
 from custom import Volume, TransferMarkt, Analytics
 
@@ -62,8 +61,8 @@ def get_player_data():
 
 # INIT
 
-# os.chdir('/Users/marinnagy/Documents/Programmation/Python/cr7 to 1000/web/volume')
-
 VOLUME = Volume()
 API = TransferMarkt()
 ANALYTICS = Analytics()
+
+run_app()

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,200&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
@@ -95,7 +99,7 @@ section.block-section {
 
 .logo > img {
     margin: auto;
-    width: 40vh;
+    width: 30vh;
     mix-blend-mode: screen;
 }
 
@@ -160,7 +164,7 @@ section.block-section {
 }
 
 .goals-type > .block {
-    flex: 1;
+    flex: 2;
 }
 
 /* CHARTS */
@@ -178,6 +182,7 @@ section.block-section {
 
 .field {
     overflow: hidden;
+    user-select: none;
 }
 
 #position-custom-chart {
@@ -255,13 +260,21 @@ ul.position-points #SS {
         margin-bottom: 3vh;
     }
 
+    #position-custom-chart ul.position-points > li:hover {
+        height: 7vh !important;
+        width: 7vh !important;
+    }
+
     .goals-type {
         flex-direction: row;
     }
 
+    .goals-description {
+        flex: 3 !important;
+    }
+
     #goals-type-chart {
-        height: 400px;
-        width: 50%;
+        height: 450px !important;
     }
 
     #time-chart {

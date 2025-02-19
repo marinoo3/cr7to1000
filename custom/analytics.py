@@ -82,7 +82,9 @@ class Analytics():
         _total = position_chart['count'].sum()
         position_chart['percent'] = position_chart['count'] / _total
         # Add data dict to general stats dict
-        stats['positionChart'] = position_chart.set_index('position')['percent'].to_dict()
+        stats['positionChart'] = position_chart.set_index('position').T.to_dict(orient='dict')
+        print(stats['positionChart'])
+        #stats['positionChart'] = position_chart.set_index('position')['percent'].to_dict()
 
         # Create general player stats
         _total_goals = len(df) + self.friendly_goals # add 141 non-reported friendly goals
