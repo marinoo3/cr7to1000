@@ -22,7 +22,8 @@ function drawTimeChart(timeChart) {
           display: true,
           text: 'ÉVOLUTION DU NOMBRE DE BUT',
           font: {
-            size: baseFontSize
+            size: baseFontSize,
+            family: 'Montserrat'
           },
           color: 'white',
           padding: {
@@ -77,7 +78,8 @@ function drawGoalsTypeChart(goalsTypeChart) {
           display: true,
           text: 'TYPE DE BUT FAVORIE',
           font: {
-            size: baseFontSize
+            size: baseFontSize,
+            family: 'Montserrat'
           },
           color: 'white',
           padding: {
@@ -169,6 +171,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   const stats = await response.json();
   const goalElement = document.querySelector('#goals');
   goalElement.textContent = 0;
+
+  console.log(stats);
 
   const percentElement = document.querySelector('.progress-label');
   percentElement.textContent = stats['player']['progress'] + '%';
