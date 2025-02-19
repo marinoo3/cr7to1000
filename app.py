@@ -64,5 +64,3 @@ def get_player_data():
 VOLUME = Volume()
 API = TransferMarkt()
 ANALYTICS = Analytics()
-
-run_app()
