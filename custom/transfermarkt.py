@@ -4,28 +4,6 @@ from bs4 import BeautifulSoup
 
 
 
-"""
-        COLUMN FORMAT (18-02-2025)
-
-        'league_logo': 0,
-        'league_name': 1,
-        'matchday': 2,
-        'date': 3,
-        'venue': 4,
-        'team_logo': 5,
-        'team_name': 6,
-        'opponent_logo': 7,
-        'opponent_name': 8,
-        'result': 9,
-        'position': 10,
-        'minute': 11,
-        'at_score': 12,
-        'type_of_goal': 13,
-        'goal_assist': 14
-"""
-
-
-
 
 
 class TransferMarkt():
@@ -109,3 +87,33 @@ class TransferMarkt():
         data = self.__parse_data(response.text)
 
         return data
+    
+
+
+
+
+
+
+
+
+
+
+"""
+        COLUMN FORMAT (18-02-2025)
+
+        'league_logo': 0,
+        'league_name': 1,
+        'matchday': 2,
+        'date': 3,
+        'venue': 4,
+        'team_logo': 5,
+        'team_name': 6,
+        'opponent_logo': 7,
+        'opponent_name': 8,
+        'result': 9,
+        'position': 10,
+        'minute': 11,
+        'at_score': 12,
+        'type_of_goal': 13,
+        'goal_assist': 14
+"""

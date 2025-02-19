@@ -89,6 +89,14 @@ section.block-section {
     padding: 2vh 1vh;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.masked {
+    visibility: hidden;
+}
+
 
 /* BANNER */
 
@@ -231,17 +239,15 @@ ul.position-points #SS {
 .popup {
     background-color: var(--bg-light);
     border: solid var(--border) 2px;
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
     position: fixed;
     border-radius: 8px;
     padding: 1vh 2vh;
     bottom: 20px;
     right: 20px;
-}
-.popup.loading {
-    display: flex;
-    align-items: center;
-    gap: 1.5vh
+    opacity: 0;
 }
 
 .popup img {

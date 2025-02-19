@@ -31,6 +31,8 @@ def up_to_date(stats):
     return same_day
 
 
+
+
 # VIEWS ROUTES
     
 
@@ -64,3 +66,5 @@ def get_player_data():
 VOLUME = Volume()
 API = TransferMarkt()
 ANALYTICS = Analytics()
+
+run_app()
