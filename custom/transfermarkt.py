@@ -1,46 +1,111 @@
 import requests
 from bs4 import BeautifulSoup
-import json
-import os
+
+
+
+
+"""
+        COLUMN FORMAT (18-02-2025)
+
+        'league_logo': 0,
+        'league_name': 1,
+        'matchday': 2,
+        'date': 3,
+        'venue': 4,
+        'team_logo': 5,
+        'team_name': 6,
+        'opponent_logo': 7,
+        'opponent_name': 8,
+        'result': 9,
+        'position': 10,
+        'minute': 11,
+        'at_score': 12,
+        'type_of_goal': 13,
+        'goal_assist': 14
+"""
+
+
+
 
 
 class TransferMarkt():
 
+
     def __init__(self) -> None:
         
-        self.url = 'https://www.transfermarkt.com/cristiano-ronaldo/alletore/spieler/8198/plus/1?saison=&verein=&liga=&wettbewerb=&pos=&minute=&pos=&torart=&stand='
+        self.url = 'https://www.transfermarkt.com/cristiano-ronaldo/alletore/spieler/8198/plus/1'
+        self.headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
+            }
 
 
-    def __string_to_dict(string):
+    def __parse_row(self, content, last_content):
 
-        # Convert string to JSON-compatible format
-        json_string = '{"' + string.replace(": ", '": ').replace(", ", ', "') + '}'
+        data = {
+            'date': '',
+            'venue': '',
+            'result': '',
+            'position': '',
+            'type_of_goal': '',
+            'goal_assist': ''
+        }
 
-        # Parse the JSON string to a dictionary
-        result = json.loads(json_string)
+        cursor = 0
+        for col in content:
 
-        print(result)  # Output: {'match': 1, 'player': 3}
-        return result
+            match cursor:
+                case 3:
+                    data['date'] = col.text
+                case 4:
+                    data['venue'] = col.text
+                case 9:
+                    data['result'] = col.text
+                case 10:
+                    data['position'] = col.text
+                case 13:
+                    data['type_of_goal'] = col.text
+                case 14:
+                    data['goal_assist'] = col.text
+
+            cursor += 1
+            colspan = col.get('colspan')
+            if colspan:
+                cursor += int(colspan) - 1
+
+        if not any(data.values()):
+            # if data is empty returns None (it's a header row)
+            return None
+        
+        for key, value in data.items():
+            if not value and last_content:
+                data[key] = last_content[key]
+
+        return data
 
 
-    def __parse_stats(self, html):
+    def __parse_data(self, html):
 
         soup = BeautifulSoup(html, 'html.parser')
-        table = soup.select('div.row .responsive-table table')[0]
-        total = table.select('tr > td')[0]
+        table = soup.select('div.row .responsive-table tbody')[0]
+        rows = table.select('tr')
 
-        string = total.text.lower().replace(';', ',')
-        stats = self.__string_to_dict(string)
+        stats = []
+
+        for row in rows:
+
+            content = row.select('td')
+            last_data = stats[-1] if stats else None
+
+            row_stats = self.__parse_row(content, last_data)
+            if row_stats:
+                stats.append(row_stats)
 
         return stats
     
 
-    def get_player_stat(self, name='', id=''):
+    def get_player_stat(self):
 
-        response = requests.get(self.url)
-        os.chdir('/Users/marinnagy/Documents/Programmation/Python/cr7 to 1000/web')
-        with open('response.html', 'w') as file:
-            file.write(response.text)
-        stats = self.__parse_stats(response.text)
+        response = requests.get(self.url, headers=self.headers)
+        data = self.__parse_data(response.text)
 
-        return stats
+        return data

@@ -12,11 +12,11 @@
         <p>Chargement des données</p>
     </div>
 
-    <div class="logo">
+    <section class="logo">
         <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="">
-    </div>
+    </section>
 
-    <div class="content-wrapper">
+    <section class="content-wrapper block-section">
         <div class="goals-container">
             <div class="goals-count">
                 <h1 id="goals" data-countup>⏤</h1>
@@ -37,15 +37,40 @@
         <div class="stats">
             <div class="average-goals block">
                 <h2 id="average-goals">⏤</h2>
-                <h3>AVG BUT</h3>
+                <h3>BUT PAR SAISON</h3>
             </div>
             <div class="played-games block">
                 <h2 id="played-games">⏤</h2>
-                <h3>MATCHS JOUÉ</h3>
+                <h3>SAISONS DE JEU</h3>
             </div>
         </div>
-    </div>
-<script type="text/javascript" src="{{ url_for('static', filename='js/get_stats.js') }}"></script>
-<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/count_up.js') }}"></script> -->
+    </section>
+
+    <section class="goals-type block-section">
+        <div class="field block">
+            <div id="position-custom-chart">
+                <img src="{{ url_for('static', filename='images/field.jpg') }}" alt="Football field">
+                <ul class="position-points">
+                    <li id="CF">CF</li>
+                    <li id="LW">LW</li>
+                    <li id="RW">RW</li>
+                    <li id="SS">SS</li>
+                </ul>
+            </div>
+        </div>
+        <div class="goals-description block">
+            <canvas id="goals-type-chart"></canvas>
+        </div>
+    </section>
+
+    <section class="timeframe block-section">
+        <div class="time-chart block">
+            <canvas id="time-chart"></canvas>
+        </div>
+    </section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>
