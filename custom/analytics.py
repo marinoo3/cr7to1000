@@ -12,7 +12,17 @@ class Analytics():
 
 
 
-    def __predict_data(self, df, goals_count):
+    def __update_friendlies(self, goals_data, wiki_count) -> None:
+
+        if not wiki_count:
+            return
+
+        if len(goals_data) + self.friendly_goals < wiki_count:
+            self.friendly_goals += wiki_count - len(goals_data)
+
+
+
+    def __predict_data(self, df, goals_count) -> datetime:
 
         prediction_df = df
         prediction_df['date'] = pd.to_datetime(prediction_df['date'])
@@ -47,15 +57,20 @@ class Analytics():
 
             count += goals_per_day
 
-        return date.strftime('%d %b %Y')
+        return date
 
 
     
 
     def format_stats(self, data):
 
+        # Update friendly goals (compare transfermarkt and wikipedia data)
+        self.__update_friendlies(data['goals_data'], data['wiki_count'])
+
+        # Init stats dict
         stats = {}
-        df = pd.DataFrame(data)
+        # Load dataframe
+        df = pd.DataFrame(data['goals_data'])
 
         # Create Time Chart data dict
         time_chart = df
@@ -90,12 +105,13 @@ class Analytics():
 
         # Create general player stats
         _total_goals = len(df) + self.friendly_goals # add 141 non-reported friendly goals
+        _prediction_date = self.__predict_data(df, _total_goals)
         player_stats = {
             'goals': _total_goals, 
             'progress': round(_total_goals / 1000 * 100),
             'seasons': len(time_chart['year']),
             'goals_per_saison': round(_total_goals / len(time_chart['year']), 2),
-            'prediction': self.__predict_data(df, _total_goals)
+            'prediction': _prediction_date.strftime('%d %b %Y')
         }
         # Add player stats to general data stats dict
         stats['player'] = player_stats

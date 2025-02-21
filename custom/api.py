@@ -1,17 +1,26 @@
-import requests
+from .scrapper import TransferMarkt, Wikipedia
 
-class API():
+
+
+class Api():
 
     def __init__(self) -> None:
-        
-        self.api_key = '1e4be630a224bb69075791002584bb8fc58ce2d1af389db19e30b2e3fb206f1e'
-        self.url = 'https://apiv3.apifootball.com'
 
-    def get_player_stat(self, name='ronaldo'):
+        self.transfermarkt = TransferMarkt()
+        self.wikipedia = Wikipedia()
 
-        response = requests.get(self.url, params={'action': 'get_players', 'player_name': name, 'APIkey': self.api_key})
-        stats = response.json()
+    def get_data(self):
 
-        print(stats)
+        # Scrap player data from transfermarkt
+        transfermarkt_data = self.transfermarkt.get_player_data()
+        # Scrap goals count from wikipedia
+        wiki_data = self.wikipedia.get_goals_count()
 
-        return stats[0]
+        # Merge data
+        data = {
+            'goals_data': transfermarkt_data,
+            'wiki_count': wiki_data
+        }
+
+        return data
+
