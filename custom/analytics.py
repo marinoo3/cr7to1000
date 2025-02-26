@@ -22,7 +22,7 @@ class Analytics():
 
 
 
-    def __predict_data(self, df, goals_count) -> datetime:
+    def __predict_date(self, df, goals_count) -> datetime:
 
         prediction_df = df
         prediction_df['date'] = pd.to_datetime(prediction_df['date'])
@@ -58,41 +58,37 @@ class Analytics():
             count += goals_per_day
 
         return date
-
-
+    
     
 
-    def format_stats(self, data):
 
-        # Update friendly goals (compare transfermarkt and wikipedia data)
-        self.__update_friendlies(data['goals_data'], data['wiki_count'])
-
-        # Init stats dict
-        stats = {}
-        # Load dataframe
-        df = pd.DataFrame(data['goals_data'])
+    def __format_time_chart(self, df) -> dict:
 
         # Create Time Chart data dict
         time_chart = df
         time_chart['date'] = pd.to_datetime(time_chart['date'])
         time_chart['year'] = time_chart['date'].dt.year
         time_chart = time_chart.groupby('year').size().reset_index(name='count')
-        # Add data dict to general stats dict
-        stats['timeChart'] = {
+        
+        return {
             'labels': time_chart['year'].tolist(),
             'data': time_chart['count'].tolist()
         }
+    
+    def __format_goals_type_chart(self, df) -> dict:
 
         # Create Goals Type Chart data dict
         goals_type_chart = df
         goals_type_chart = goals_type_chart.groupby('type_of_goal').size().reset_index(name='count')
         goals_type_chart = goals_type_chart[goals_type_chart['type_of_goal'] != 'Not reported']
         goals_type_chart = goals_type_chart.sort_values(by='count', ascending=False)
-        # Add data dict to general stats dict
-        stats['goalsTypeChart'] = {
+
+        return {
             'labels': goals_type_chart['type_of_goal'].to_list(),
             'data': goals_type_chart['count'].to_list()
         }
+    
+    def __format_position_chart(self, df) -> dict:
 
         # Create Position Chart data dict
         position_chart = df
@@ -100,17 +96,37 @@ class Analytics():
         position_chart = position_chart.groupby('position').size().reset_index(name='count')
         _total = position_chart['count'].sum()
         position_chart['percent'] = position_chart['count'] / _total
-        # Add data dict to general stats dict
-        stats['positionChart'] = position_chart.set_index('position').T.to_dict(orient='dict')
+
+        return position_chart.set_index('position').T.to_dict(orient='dict')
+    
+    
+    
+
+    def format_stats(self, data):
+
+        # Update friendly goals (compare transfermarkt and wikipedia data)
+        self.__update_friendlies(data['goals_data'], data['wiki_count'])
+
+        # Load dataframe
+        df = pd.DataFrame(data['goals_data'])
+
+        # Create stats dict
+        stats = {
+            'timeChart': self.__format_time_chart(df),
+            'goalsTypeChart': self.__format_goals_type_chart(df),
+            'positionChart': self.__format_position_chart(df),
+
+        }
 
         # Create general player stats
         _total_goals = len(df) + self.friendly_goals # add 141 non-reported friendly goals
-        _prediction_date = self.__predict_data(df, _total_goals)
+        _seasons = len(stats['timeChart']['labels'])
+        _prediction_date = self.__predict_date(df, _total_goals)
         player_stats = {
             'goals': _total_goals, 
             'progress': round(_total_goals / 1000 * 100),
-            'seasons': len(time_chart['year']),
-            'goals_per_saison': round(_total_goals / len(time_chart['year']), 2),
+            'seasons': _seasons,
+            'goals_per_saison': round(_total_goals / _seasons, 2),
             'prediction': _prediction_date.strftime('%d %b %Y')
         }
         # Add player stats to general data stats dict
