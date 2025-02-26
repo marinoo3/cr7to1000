@@ -18,7 +18,7 @@ class Analytics():
             return
 
         if len(goals_data) + self.friendly_goals < wiki_count:
-            self.friendly_goals += wiki_count - len(goals_data)
+            self.friendly_goals = wiki_count - len(goals_data)
 
 
 
