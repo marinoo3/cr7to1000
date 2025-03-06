@@ -102,7 +102,7 @@ class Analytics():
     
     
 
-    def format_stats(self, data):
+    def format_stats(self, data) -> dict:
 
         # Update friendly goals (compare transfermarkt and wikipedia data)
         self.__update_friendlies(data['goals_data'], data['wiki_count'])

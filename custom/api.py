@@ -9,7 +9,7 @@ class Api():
         self.transfermarkt = TransferMarkt()
         self.wikipedia = Wikipedia()
 
-    def get_data(self):
+    def get_data(self) -> dict:
 
         # Scrap player data from transfermarkt
         transfermarkt_data = self.transfermarkt.get_player_data()

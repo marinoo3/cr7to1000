@@ -19,7 +19,7 @@ class TransferMarkt():
             }
 
 
-    def __parse_row(self, content, last_content):
+    def __parse_row(self, content, last_content) -> dict:
 
         data = {
             'date': '',
@@ -63,7 +63,7 @@ class TransferMarkt():
         return data
 
 
-    def __parse_data(self, html):
+    def __parse_data(self, html) -> list:
 
         soup = BeautifulSoup(html, 'html.parser')
         table = soup.select('div.row .responsive-table tbody')[0]
@@ -83,7 +83,7 @@ class TransferMarkt():
         return stats
     
 
-    def get_player_data(self):
+    def get_player_data(self) -> list:
 
         response = requests.get(self.url, headers=self.headers)
         data = self.__parse_data(response.text)

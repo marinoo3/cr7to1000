@@ -14,7 +14,7 @@ class Wikipedia():
         self.url = 'https://en.wikipedia.org/wiki/List_of_footballers_with_500_or_more_goals'
 
 
-    def __parse_goals(self, html):
+    def __parse_goals(self, html) -> int:
 
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -32,7 +32,7 @@ class Wikipedia():
         return int(score)
     
 
-    def get_goals_count(self):
+    def get_goals_count(self) -> int:
 
         goals = None
 

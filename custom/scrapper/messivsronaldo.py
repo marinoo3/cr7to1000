@@ -10,13 +10,13 @@ class MessiVSRonaldo():
         self.base_url = 'https://www.messivsronaldo.app/'
 
 
-    def __player_url(self, name='', id=''):
+    def __player_url(self, name='', id='') -> str:
 
         url = f'{self.base_url}/{name}/{id}/'
         return url
 
 
-    def __parse_stats(self, html):
+    def __parse_stats(self, html) -> dict:
 
         soup = BeautifulSoup(html, 'html.parser')
         table = soup.select('div[class*="RonaldoStatsBlock"]')[0]
@@ -30,7 +30,7 @@ class MessiVSRonaldo():
         return stats
     
 
-    def get_player_stat(self, name='', id=''):
+    def get_player_stat(self, name='', id='') -> dict:
 
         url = self.__player_url(name, id)
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'}

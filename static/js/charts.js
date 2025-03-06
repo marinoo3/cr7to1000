@@ -154,6 +154,7 @@ function updatePositionChart(positionChart) {
 
         const percent = positionChart[position]['percent'];
         const position_element = custom_ctx.querySelector('#' + position);
+        console.log('#' + position);
         const size = (.5 + percent) * 6 + 'vh';
 
         position_element.style.height = size;
