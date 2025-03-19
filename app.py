@@ -26,10 +26,17 @@ def run_app():
 def index_main() -> str:
     return render_template('stats.html')
 
-
 @app.route('/privacy-policy')
 def privacy_policy() -> str:
     return render_template('privacy-policy.html')
+
+@app.route('/robots.txt')
+def robots_txt() -> str:
+    return render_template('robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap() -> str:
+    return render_template('sitemap.xml')
 
 
 
