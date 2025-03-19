@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify
 
 from custom import Volume, Api, Analytics
 from custom.utils import up_to_date
@@ -32,11 +32,11 @@ def privacy_policy() -> str:
 
 @app.route('/robots.txt')
 def robots_txt() -> str:
-    return render_template('robots.txt')
+    return send_from_directory(app.static_folder, 'robots.txt')
 
 @app.route('/sitemap.xml')
 def sitemap() -> str:
-    return render_template('sitemap.xml')
+    return send_from_directory(app.static_folder, 'sitemap.xml')
 
 
 
