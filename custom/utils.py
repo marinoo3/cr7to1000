@@ -13,8 +13,6 @@ def up_to_date(date):
     stats_date = datetime.strptime(date, '%Y-%m-%d')
     today = datetime.today()
 
-    print(stats_date.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'))
-
     same_day = (
         stats_date.year == today.year and
         stats_date.month == today.month and

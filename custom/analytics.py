@@ -8,6 +8,7 @@ class Analytics():
 
 
     def __init__(self) -> None:
+        
         self.friendly_goals = 141
 
 

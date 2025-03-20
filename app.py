@@ -27,18 +27,26 @@ def run_app():
 
 @app.route('/')
 def index_main() -> str:
-    return render_template('stats.html')
+    return render_template('dashboard.html')
+
+@app.route('/dashboard')
+def index_dashboard() -> str:
+    return render_template('dashboard.html')
+
+@app.route('/videos')
+def index_videos() -> str:
+    return render_template('videos.html')
 
 @app.route('/privacy-policy')
-def privacy_policy() -> str:
+def index_privacy_policy() -> str:
     return render_template('privacy-policy.html')
 
 @app.route('/robots.txt')
-def robots() -> str:
+def index_robots() -> str:
     return send_from_directory(app.static_folder, 'robots.txt')
 
 @app.route('/sitemap.xml')
-def sitemap() -> str:
+def index_sitemap() -> str:
     return send_from_directory(app.static_folder, 'sitemap.xml')
 
 

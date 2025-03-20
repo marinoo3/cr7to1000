@@ -1,6 +1,9 @@
 from sqlalchemy import MetaData, Table, engine
 from sqlalchemy.orm import session
 
+
+
+
 class BaseTable():
 
     def __init__(self, table_name, engine: engine.base.Engine, session: session.sessionmaker) -> None:
