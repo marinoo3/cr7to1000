@@ -28,8 +28,8 @@ class Database():
 
         connection_string = URL.create(
             'postgresql',
-            username = 'koyeb-adm', #os.environ.get('CR7TO1000_DB_USERNAME'),
-            password = 'npg_wWPy2l0azDoT', #os.environ.get('CR7TO1000_DB_PASSWORD'),
+            username = os.environ.get('CR7TO1000_DB_USERNAME'),
+            password = os.environ.get('CR7TO1000_DB_PASSWORD'),
             host = 'ep-sparkling-feather-a24lwp3r.eu-central-1.pg.koyeb.app',
             database = 'cr7to1000-db'
         )
