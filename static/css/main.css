@@ -51,6 +51,10 @@ li {
     font-size: 1.5vh;
 }
 
+a {
+    font-size: 2vh;
+}
+
 h1 {
     font-size: 10vh;
     font-weight: 400;
@@ -100,15 +104,59 @@ section.block-section {
 
 /* BANNER */
 
-.logo {
+nav.main-menu {
     display: flex;
-    margin: 6vh 0;
+    justify-content: space-between;
+    padding: 2vh 4vh;
+    position: fixed;
+    width: calc(100% - 8vh);
+    z-index: 10;
+    background-color: var(--bg-light);
+    border-bottom: solid 2px var(--border);
+    align-items: center;
 }
 
-.logo > img {
-    margin: auto;
-    width: 30vh;
+nav.main-menu > div {
+    flex: 1;
+}
+
+nav.main-menu .logo {
+    width: 12vh;
+    max-width: 12vh;
     mix-blend-mode: screen;
+}
+
+nav.main-menu ul {
+    display: flex;
+    align-items: center;
+    gap: 4vh;
+    flex: 12;
+    justify-content: center;
+}
+
+nav.main-menu ul > li {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    transition: background-color .125s ease;
+    padding: 1vh;
+    border-radius: 10px;
+}
+nav.main-menu ul > li:hover {
+    background-color: var(--bg);
+    cursor: pointer;
+}
+
+
+/* HEADER */
+
+.header {
+    margin: 150px 0px 4vh;
+}
+
+.header h1 {
+    font-size: 5vh;
+    font-weight: 300;
 }
 
 

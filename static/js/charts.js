@@ -78,16 +78,16 @@ function drawTimeChart(timeChart) {
 // Type of Goals Chart
 
 
-function drawGoalsTypeChart(goalsTypeChart) {
+function drawTypeChart(typeChart) {
 
     const ctx = document.getElementById('goals-type-chart');
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: goalsTypeChart['labels'],
+            labels: typeChart['labels'],
             datasets: [{
-                data: goalsTypeChart['data'],
+                data: typeChart['data'],
                 borderWidth: baseFontSize / 8,
                 borderColor: '#E8545F',
                 backgroundColor: '#853D43'
@@ -154,7 +154,6 @@ function updatePositionChart(positionChart) {
 
         const percent = positionChart[position]['percent'];
         const position_element = custom_ctx.querySelector('#' + position);
-        console.log('#' + position);
         const size = (.5 + percent) * 6 + 'vh';
 
         position_element.style.height = size;

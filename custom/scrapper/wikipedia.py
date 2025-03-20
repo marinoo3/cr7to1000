@@ -39,7 +39,6 @@ class Wikipedia():
         try:
             response = requests.get(self.url)
             goals = self.__parse_goals(response.text)
-            print(f'Wikipedia goals: {goals}')
         except Exception as e:
             print(f'Error scrapping Wikipedia: {e}')
 

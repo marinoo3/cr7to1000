@@ -113,7 +113,7 @@ class Analytics():
         # Create stats dict
         stats = {
             'timeChart': self.__format_time_chart(df),
-            'goalsTypeChart': self.__format_goals_type_chart(df),
+            'typeChart': self.__format_goals_type_chart(df),
             'positionChart': self.__format_position_chart(df),
 
         }
@@ -126,7 +126,7 @@ class Analytics():
             'goals': _total_goals, 
             'progress': round(_total_goals / 1000 * 100),
             'seasons': _seasons,
-            'goals_per_saison': round(_total_goals / _seasons, 2),
+            'goals_per_season': round(_total_goals / _seasons, 2),
             'prediction': _prediction_date.strftime('%d %b %Y')
         }
         # Add player stats to general data stats dict
@@ -134,7 +134,7 @@ class Analytics():
 
         # Create Header for stats
         stats['header'] = {
-            'date': datetime.strftime(datetime.today(), '%d-%m-%y')
+            'date': datetime.strftime(datetime.today(), '%Y-%m-%d')
         }
 
         return stats

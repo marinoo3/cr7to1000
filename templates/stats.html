@@ -13,8 +13,31 @@
         <p>Chargement des données</p>
     </div>
 
-    <section class="logo">
-        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="CR7 to 1000 banner">
+    <nav class="main-menu">
+        <div>
+            <img class="logo" src="{{ url_for('static', filename='images/banner.jpg') }}" alt="CR7 to 1000 banner">
+        </div>
+        <ul>
+            <li>
+                <img src="{{ url_for('static', filename='images/dashboard.svg') }}" alt="Dashboard icon" width="20vh">
+                <a>Dashboard</a>
+            </li>
+            <li>
+                <img src="{{ url_for('static', filename='images/goals.svg') }}" alt="Goals icon" width="20vh">
+                <a>Goals</a>
+            </li>
+            <li>
+                <img src="{{ url_for('static', filename='images/reports.svg') }}" alt="Reports icon" width="20vh">
+                <a>Reports</a>
+            </li>
+        </ul>
+        <div>
+            <p href="">More</p>
+        </div>
+    </nav>
+
+    <section class="header">
+        <h1>Dashboard</h1>
     </section>
 
     <section class="content-wrapper block-section">

@@ -3,15 +3,17 @@ from datetime import datetime
 
 
 
-def up_to_date(stats):
+def up_to_date(date):
 
     # Checks if the collected stats are up to date (from the same day as today's date)
 
-    if not stats:
+    if not date:
         return False
 
-    stats_date = datetime.strptime(stats['header']['date'], '%d-%m-%y')
+    stats_date = datetime.strptime(date, '%Y-%m-%d')
     today = datetime.today()
+
+    print(stats_date.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'))
 
     same_day = (
         stats_date.year == today.year and

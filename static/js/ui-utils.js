@@ -43,12 +43,12 @@ function updateNumbers(stats) {
     const predictedDate = document.querySelector('#prediction');
     predictedDate.textContent = stats['player']['prediction'];
 
-    // Set saison
+    // Set season
     const playedGames = document.querySelector('#played-games');
     playedGames.textContent = stats['player']['seasons'];
 
     // Set average goals
     const averageGoals = document.querySelector('#average-goals');
-    averageGoals.textContent = stats['player']['goals_per_saison'];
+    averageGoals.textContent = stats['player']['goals_per_season'];
 
 }

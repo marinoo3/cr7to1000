@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 	updateNumbers(stats);
 
 	drawTimeChart(stats['timeChart']);
-	drawGoalsTypeChart(stats['goalsTypeChart']);
+	drawTypeChart(stats['typeChart']);
 	updatePositionChart(stats['positionChart']);
 
 
