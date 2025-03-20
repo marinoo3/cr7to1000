@@ -66,9 +66,6 @@ def get_player_data() -> Flask.response_class:
 
 # INIT
 
-print('ENVIRONEMENT VARIABLES:', flush=True)
-print(os.environ.get('CR7TO1000_DB_USERNAME'), os.environ.get('CR7TO1000_DB_PASSWORD'), flush=True)
-
 DATABASE = Database()
 API = Api()
 ANALYTICS = Analytics()
