@@ -3,12 +3,15 @@ from flask import Flask, render_template, send_from_directory, jsonify
 from custom import Database, Api, Analytics
 from custom.utils import up_to_date
 
+import os
+
 
 
 # APP LOGIC
 
 
 app = Flask(__name__)
+app.secret_key = "0923876591023"
 
 
 def run_app():
@@ -62,6 +65,9 @@ def get_player_data() -> Flask.response_class:
 
 
 # INIT
+
+print('ENVIRONEMENT VARIABLES:', flush=True)
+print(os.environ.get('CR7TO1000_DB_USERNAME'), os.environ.get('CR7TO1000_DB_PASSWORD'), flush=True)
 
 DATABASE = Database()
 API = Api()
