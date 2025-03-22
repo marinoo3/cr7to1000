@@ -88,7 +88,7 @@ section.block-section {
     border: solid var(--border) 2px;
     margin: 0px 60px;
     padding: 2vh;
-    border-radius: 20px;
+    border-radius: 1.5vh;
     margin-bottom: 3vh
 }
 
@@ -148,7 +148,7 @@ nav.main-menu ul {
     justify-content: center;
 }
 
-nav.main-menu ul > li {
+nav.main-menu ul > li a {
     display: flex;
     align-items: center;
     gap: 1vh;
@@ -156,7 +156,7 @@ nav.main-menu ul > li {
     padding: 1vh;
     border-radius: 10px;
 }
-nav.main-menu ul > li:hover {
+nav.main-menu ul > li a:hover {
     background-color: var(--bg);
     cursor: pointer;
 }
@@ -167,20 +167,41 @@ nav.main-menu .more-button {
     justify-content: flex-end;
     gap: 1vh;
     position: relative;
+    padding: 10px 0px;
 }
 
 nav.main-menu .more-menu-container {
     display: none;
     position: absolute;
-    margin-top: 8vh;
+    margin-top: 12vh;
     background-color: red;
     right: 0;
 }
 
 nav.main-menu .more-button:hover .more-menu-container {
     display: block;
+    padding: 20px;
 }
 
+/* POPUP */
+
+.popup {
+    background-color: var(--bg-light);
+    border: solid var(--border) 2px;
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
+    position: fixed;
+    border-radius: 8px;
+    padding: 1vh 2vh;
+    bottom: 20px;
+    right: 20px;
+}
+
+.popup img {
+    width: 30px;
+    height: 30px;
+}
 
 
 

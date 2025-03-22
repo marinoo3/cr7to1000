@@ -10,13 +10,12 @@ def up_to_date(date):
     if not date:
         return False
 
-    stats_date = datetime.strptime(date, '%Y-%m-%d')
     today = datetime.today()
 
     same_day = (
-        stats_date.year == today.year and
-        stats_date.month == today.month and
-        stats_date.day == today.day
-        )
+        date.year == today.year and
+        date.month == today.month and
+        date.day == today.day
+    )
     
     return same_day

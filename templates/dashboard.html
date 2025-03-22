@@ -20,20 +20,28 @@
         </div>
         <ul>
             <li>
-                <img src="{{ url_for('static', filename='images/dashboard.svg') }}" alt="Dashboard icon" width="20vh">
-                <a href="dashboard">Dashboard</a>
+                <a href="dashboard">
+                    <img src="{{ url_for('static', filename='images/dashboard.svg') }}" alt="Dashboard icon" width="20vh">
+                    <p>Dashboard</p>
+                </a>
             </li>
             <li>
-                <img src="{{ url_for('static', filename='images/goals.svg') }}" alt="Goals icon" width="20vh">
-                <a>Goals</a>
+                <a href="goals">
+                    <img src="{{ url_for('static', filename='images/goals.svg') }}" alt="Goals icon" width="20vh">
+                    <p>Goals</p>
+                </a>
             </li>
             <li>
-                <img src="{{ url_for('static', filename='images/reports.svg') }}" alt="Reports icon" width="20vh">
-                <a>Reports</a>
+                <a href="reports">
+                    <img src="{{ url_for('static', filename='images/reports.svg') }}" alt="Reports icon" width="20vh">
+                    <p>Reports</p>
+                </a>
             </li>
-            <li>
-                <img src="{{ url_for('static', filename='images/videos.svg') }}" alt="Reports icon" width="20vh">
-                <a href="videos">Videos</a>
+            <li >
+                <a href="videos">
+                    <img src="{{ url_for('static', filename='images/videos.svg') }}" alt="Reports icon" width="20vh">
+                    <p>Videos</p>
+                </a>
             </li>
         </ul>
         <div class="more-button">
@@ -111,7 +119,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/ui-utils.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/charts.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 </body>
 </html>

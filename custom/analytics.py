@@ -23,10 +23,10 @@ class Analytics():
 
 
 
-    def __predict_date(self, df, goals_count) -> datetime:
+    def __predict_date(self, df:pd.DataFrame, goals_count) -> datetime:
 
-        prediction_df = df
-        prediction_df['date'] = pd.to_datetime(prediction_df['date'])
+        prediction_df = df.copy()
+        prediction_df['date'] = pd.to_datetime(prediction_df['date'], format='%m/%d/%y')
         # Create a Year column
         prediction_df['year'] = prediction_df['date'].dt.year
         # Create a Month column
@@ -63,11 +63,11 @@ class Analytics():
     
 
 
-    def __format_time_chart(self, df) -> dict:
+    def __format_time_chart(self, df:pd.DataFrame) -> dict:
 
         # Create Time Chart data dict
-        time_chart = df
-        time_chart['date'] = pd.to_datetime(time_chart['date'])
+        time_chart = df.copy()
+        time_chart['date'] = pd.to_datetime(time_chart['date'], format='%m/%d/%y')
         time_chart['year'] = time_chart['date'].dt.year
         time_chart = time_chart.groupby('year').size().reset_index(name='count')
         
@@ -76,7 +76,7 @@ class Analytics():
             'data': time_chart['count'].tolist()
         }
     
-    def __format_goals_type_chart(self, df) -> dict:
+    def __format_goals_type_chart(self, df:pd.DataFrame) -> dict:
 
         # Create Goals Type Chart data dict
         goals_type_chart = df
@@ -89,10 +89,10 @@ class Analytics():
             'data': goals_type_chart['count'].to_list()
         }
     
-    def __format_position_chart(self, df) -> dict:
+    def __format_position_chart(self, df:pd.DataFrame) -> dict:
 
         # Create Position Chart data dict
-        position_chart = df
+        position_chart = df.copy()
         position_chart['position'] = position_chart['position'].str.strip()
         position_chart = position_chart.groupby('position').size().reset_index(name='count')
         _total = position_chart['count'].sum()
@@ -100,7 +100,16 @@ class Analytics():
 
         return position_chart.set_index('position').T.to_dict(orient='dict')
     
-    
+
+    def __format_goals_list(self, df:pd.DataFrame) -> pd.DataFrame:
+        
+        goals = df.copy()
+        goals = goals[['date', 'competition', 'position', 'minute', 'type_of_goal']]
+        goals['date'] = pd.to_datetime(goals['date'], format='%m/%d/%y')
+        goals['month_year'] = goals['date'].dt.strftime('%B %Y')
+
+        return goals
+
     
 
     def format_stats(self, data) -> dict:
@@ -116,6 +125,7 @@ class Analytics():
             'timeChart': self.__format_time_chart(df),
             'typeChart': self.__format_goals_type_chart(df),
             'positionChart': self.__format_position_chart(df),
+            'goals': self.__format_goals_list(df)
 
         }
 

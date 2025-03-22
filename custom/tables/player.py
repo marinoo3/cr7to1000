@@ -19,14 +19,12 @@ class Player(BaseTable):
 
                 stmt = select(self.table.c.goals, self.table.c.progress, self.table.c.seasons, self.table.c.goals_per_season, self.table.c.prediction)
                 result = session.execute(stmt).fetchall()
-
-                print('GOALS PER SEASON', result[0].goals_per_season)
                 
                 return {
                     "goals": result[0].goals,
                     "progress": result[0].progress,
                     "seasons": result[0].seasons,
-                    "goals_per_season": result[0].goals_per_season,
+                    "goalsPerSeason": result[0].goals_per_season,
                     "prediction": result[0].prediction
                 }
             

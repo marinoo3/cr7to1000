@@ -22,10 +22,12 @@ class TransferMarkt():
     def __parse_row(self, content, last_content) -> dict:
 
         data = {
+            'competition': '',
             'date': '',
             'venue': '',
             'result': '',
             'position': '',
+            'minute': '',
             'type_of_goal': '',
             'goal_assist': ''
         }
@@ -34,6 +36,8 @@ class TransferMarkt():
         for col in content:
 
             match cursor:
+                case 1:
+                    data['competition'] = col.text
                 case 3:
                     data['date'] = col.text
                 case 4:
@@ -42,6 +46,8 @@ class TransferMarkt():
                     data['result'] = col.text
                 case 10:
                     data['position'] = col.text
+                case 11:
+                    data['minute'] = col.text
                 case 13:
                     data['type_of_goal'] = col.text
                 case 14:

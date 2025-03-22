@@ -52,7 +52,7 @@ class Header(BaseTable):
                 # Prepare new data to insert
                 today = datetime.today()
                 new_data = [
-                    {'stats': 'dashboard', 'last_update': today.strftime('%Y-%m-%d')}
+                    {'stats': stats, 'last_update': today.strftime('%Y-%m-%d')}
                 ]
 
                 # Insert new data

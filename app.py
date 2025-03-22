@@ -1,4 +1,5 @@
 from flask import Flask, render_template, send_from_directory, jsonify
+import locale
 
 from custom import Database, Api, Analytics
 from custom.utils import up_to_date
@@ -11,7 +12,8 @@ import os
 
 
 app = Flask(__name__)
-app.secret_key = "0923876591023"
+app.secret_key = os.environ.get('CR7TO1000_SECRET_KEY')
+locale.setlocale(locale.LC_TIME, 'fr_FR')
 
 
 def run_app():
@@ -32,6 +34,10 @@ def index_main() -> str:
 @app.route('/dashboard')
 def index_dashboard() -> str:
     return render_template('dashboard.html')
+
+@app.route('/goals')
+def index_goals() -> str:
+    return render_template('goals.html')
 
 @app.route('/videos')
 def index_videos() -> str:
@@ -55,17 +61,36 @@ def index_sitemap() -> str:
 # API ROUTES
 
 
-@app.route('/get_player_data/', methods=['GET'])
-def get_player_data() -> Flask.response_class:
+@app.route('/get_dashboard_data/', methods=['GET'])
+def get_dashboard_data() -> Flask.response_class:
 
+    # check last update date
+    last_update = DATABASE.get_last_update(stats='all_stats')
+    # if stats not up to date then scrap, analyse and save stats to volume
+    if not up_to_date(last_update):
+        data = API.get_data()
+        stats_data = ANALYTICS.format_stats(data)
+        DATABASE.save_stats(stats_data)
+    
     # collect stats from saved volume
     stats = DATABASE.get_dashboard_stats()
 
+    return jsonify(stats)
+
+@app.route('/get_goals_data/', defaults={'offset': 0}, methods=['GET']) #optional offset parameter, default is 0
+@app.route('/get_goals_data/<offset>', methods=['GET'])
+def get_goals_data(offset) -> Flask.response_class:
+
+    # check last update date
+    last_update = DATABASE.get_last_update(stats='all_stats')
     # if stats not up to date then scrap, analyse and save stats to volume
-    if not up_to_date(stats['last_update']):
+    if not up_to_date(last_update):
         data = API.get_data()
-        stats = ANALYTICS.format_stats(data)
-        DATABASE.save_dashboard_stats(stats)
+        stats_data = ANALYTICS.format_stats(data)
+        DATABASE.save_stats(stats_data)
+
+    # collect stats from saved volume
+    stats = DATABASE.get_goals_stats(offset=offset)
 
     return jsonify(stats)
 
