@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('CR7TO1000_SECRET_KEY')
-locale.setlocale(locale.LC_TIME, 'fr_FR')
+locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
 
 
 def run_app():
