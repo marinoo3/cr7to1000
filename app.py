@@ -43,6 +43,10 @@ def index_goals() -> str:
 def index_videos() -> str:
     return render_template('videos.html')
 
+@app.route('/bio')
+def index_bio() -> str:
+    return render_template('biographie.html')
+
 @app.route('/privacy-policy')
 def index_privacy_policy() -> str:
     return render_template('privacy-policy.html')

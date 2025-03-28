@@ -123,6 +123,7 @@ nav.main-menu {
     justify-content: space-between;
     padding: 1.4vh 4vh;
     position: fixed;
+    top: 0;
     width: calc(100% - 8vh);
     z-index: 10;
     background-color: var(--bg-light);

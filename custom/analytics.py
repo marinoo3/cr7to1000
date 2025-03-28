@@ -106,7 +106,7 @@ class Analytics():
         goals = df.copy()
         goals = goals[['date', 'competition', 'position', 'minute', 'type_of_goal']]
         goals['date'] = pd.to_datetime(goals['date'], format='%m/%d/%y')
-        goals['month_year'] = goals['date'].dt.strftime('%B %Y')
+        goals['month_year'] = goals['date'].dt.strftime('%B %Y').str.title()
 
         return goals
 
