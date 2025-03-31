@@ -40,9 +40,3 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 ## 📫 Contributions
 
 Les contributions, les signalements de bug et les suggestions d'améliorations sont bienvenus. Veuillez ouvrir une issue ou envoyer une pull request.
-
-
-
-## 📜 Licence
-
-Projet open-source sous la licence MIT.
