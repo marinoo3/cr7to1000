@@ -4,7 +4,7 @@
 
 Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa progression vers les **1000 buts professionnels**. L'application analyse les données et prédit une date estimée pour atteindre ce record historique.
 
----
+
 
 ## 🛠️ Stack technique
 
@@ -15,7 +15,7 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 - Web scraping pour récupérer les données sur différents sites
 - Front-end en **HTML/CSS** (visualisation des graphiques)
 
----
+
 
 ## 📊 Fonctionnalités actuelles
 
@@ -24,7 +24,7 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 - Visualisations interactives de l'évolution des buts
 - Modèle de prédiction simple estimant la date du 1000ᵉ but
 
----
+
 
 ## 🚧 Prochaines améliorations prévues
 
@@ -34,13 +34,13 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 - [ ] Optimisation du modèle prédictif pour améliorer la précision
 - [ ] Élargir les statistiques disponibles sur Ronaldo
 
----
+
 
 ## 📫 Contributions
 
 Les contributions, les signalements de bug et les suggestions d'améliorations sont bienvenus. Veuillez ouvrir une issue ou envoyer une pull request.
 
----
+
 
 ## 📜 Licence
 
