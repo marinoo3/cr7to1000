@@ -3,6 +3,7 @@
 ### 🔗 Live : [cr7to1000.com](www.cr7to1000.com)
 
 Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa progression vers les **1000 buts professionnels**. L'application analyse les données et prédit une date estimée pour atteindre ce record historique.
+![Capture d'écran du site](screenshot.png)
 
 
 
