@@ -12,7 +12,7 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 - **Python** avec **Flask** (framework web)
 - **Gunicorn** (serveur déploiement)
 - Hébergement : **Koyeb**
-- Base de données : **SQL**
+- Base de données : **PostgreSQL**
 - Web scraping pour récupérer les données sur différents sites
 - Front-end en **HTML/CSS** (visualisation des graphiques)
 
@@ -29,6 +29,7 @@ Suivez les performances de Cristiano Ronaldo en temps réel et visualisez sa pro
 
 ## 🚧 Prochaines améliorations prévues
 
+- [ ] Prise en du responsive pour la version mobile
 - [ ] Création d'une table utilisateurs pour permettre l'abonnement au site
 - [ ] Implémentation de notifications en temps réel à chaque nouveau but
 - [ ] Génération automatique d'un rapport mensuel détaillé des performances
