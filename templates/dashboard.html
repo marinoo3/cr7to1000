@@ -22,19 +22,19 @@
             <li>
                 <a href="dashboard">
                     <img src="{{ url_for('static', filename='images/dashboard.svg') }}" alt="Dashboard icon" width="20vh">
-                    <p>Dashboard</p>
+                    <p>Tableau de bord</p>
                 </a>
             </li>
             <li>
                 <a href="goals">
                     <img src="{{ url_for('static', filename='images/goals.svg') }}" alt="Goals icon" width="20vh">
-                    <p>Goals</p>
+                    <p>Buts</p>
                 </a>
             </li>
             <li>
                 <a href="reports">
                     <img src="{{ url_for('static', filename='images/reports.svg') }}" alt="Reports icon" width="20vh">
-                    <p>Reports</p>
+                    <p>Rapports</p>
                 </a>
             </li>
             <li >
@@ -46,10 +46,13 @@
         </ul>
         <div class="more-button">
             <img src="{{ url_for('static', filename='images/down-arrow.svg') }}" alt="" width="20vh">
-            <p>More</p>
-            <div class="more-menu-container">
-                <ul>
-                    <li>Biographie</li>
+            <div>
+                <p>Plus</p>
+                <ul class="dropdown">
+                    <li><a href="biographie.html">Biographie</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Illustration</a></li>
+                    <li><a href="#">Iconography</a></li>
                 </ul>
             </div>
         </div>
@@ -101,6 +104,7 @@
                         <li id="RW" data-count="">RW</li>
                         <li id="SS" data-count="">SS</li>
                         <li id="LM" data-count="">LM</li>
+                        <li id="RM" data-count="">RM</li>
                     </ul>
                 </div>
             </div>

@@ -1,10 +1,11 @@
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify, request
 import locale
 
 from custom import Database, Api, Analytics
 from custom.utils import up_to_date
 
 import os
+
 
 
 
@@ -20,7 +21,7 @@ def run_app():
 
     # Run the app on port 8000
     app.run(host='0.0.0.0', port=8000)
-
+    
 
 
 
@@ -81,9 +82,10 @@ def get_dashboard_data() -> Flask.response_class:
 
     return jsonify(stats)
 
-@app.route('/get_goals_data/', defaults={'offset': 0}, methods=['GET']) #optional offset parameter, default is 0
-@app.route('/get_goals_data/<offset>', methods=['GET'])
-def get_goals_data(offset) -> Flask.response_class:
+@app.route('/get_goals_data/', methods=['GET'])
+def get_goals_data() -> Flask.response_class:
+
+    offset = request.args.get('offset', default=0, type=int)
 
     # check last update date
     last_update = DATABASE.get_last_update(stats='all_stats')
@@ -100,12 +102,11 @@ def get_goals_data(offset) -> Flask.response_class:
 
 
 
-
 # INIT
 
-DATABASE = Database()
 API = Api()
 ANALYTICS = Analytics()
+DATABASE = Database()
 
 if __name__ == '__main__':
     run_app()

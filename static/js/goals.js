@@ -1,3 +1,6 @@
+let requestOffset = 0;
+
+
 function updateGoals(goals, goalsContainer) {
 
     for(monthYear of goals) {
@@ -24,32 +27,11 @@ function updateGoals(goals, goalsContainer) {
 }
 
 
-function onScroll() {
-
-	// Calculate the bottom position
-	const scrollTop = window.scrollY;
-	const scrollHeight = document.documentElement.scrollHeight;
-	const clientHeight = window.innerHeight;
-  
-	if (scrollTop + clientHeight >= scrollHeight) {
-	  // User has scrolled to the bottom
-	  console.log("You've reached the bottom!");
-	}
-  }
-
-
-document.addEventListener('DOMContentLoaded', async function () {
-
-	const goalsContainer = document.querySelector('.goals-container ul');
-
-	// Show popup
-
-	const popup = document.querySelector('#loading-popup');
-	popup.classList.remove('hidden');
+async function requestGoals() {
 
 	// Requests stats to python API
 
-	const response = await fetch('/get_goals_data/', {
+	const response = await fetch('/get_goals_data?offset=' + requestOffset, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
 	});
@@ -59,11 +41,43 @@ document.addEventListener('DOMContentLoaded', async function () {
 	}
 
 	const result = await response.json();
+	requestOffset += 6;
 
+	return result;
+
+}
+
+
+async function onScroll(goalsContainer) {
+
+	// Calculate the bottom position
+	const scrollTop = window.scrollY;
+	const scrollHeight = document.documentElement.scrollHeight;
+	const clientHeight = window.innerHeight;
+  
+	if (scrollTop + clientHeight >= scrollHeight) {
+		console.log('loading more');
+	  	// User has scrolled to the bottom
+	  	const result = await requestGoals();
+		// Add goals of the last 6 months
+		updateGoals(result['goals'], goalsContainer);
+	}
+}
+
+
+document.addEventListener('DOMContentLoaded', async function () {
+
+	const goalsContainer = document.querySelector('.goals-container ul');
+
+	// Show popup
+	const popup = document.querySelector('#loading-popup');
+	popup.classList.remove('hidden');
+
+	const result = await requestGoals();
 	// Add goals of the last 6 months
 	updateGoals(result['goals'], goalsContainer);
 	// Loads more when the user reach the bottom of the page
-	document.addEventListener('scroll', onScroll);
+	document.addEventListener('scroll', () => onScroll(goalsContainer));
 
 
 	// Hide popup

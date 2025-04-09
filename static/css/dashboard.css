@@ -123,6 +123,10 @@ ul.position-points #LM {
     left: 20%;
     top: 60%;
 }
+ul.position-points #RM {
+    left: 80%;
+    top: 60%;
+}
 
 
 /* RESPONSIVE */

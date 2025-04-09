@@ -30,6 +30,7 @@ class Database():
         self.goals_list = Goals(engine=_engine, session=_session)
 
 
+
     def __create_engine(self):
 
         connection_string = URL.create(
